@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebApplication5.Models.pasaje>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Regresar","Index","Home")
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigopasaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoitinerario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigopasajero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numeroasientopasaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaventapasaje)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigopasaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoitinerario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigopasajero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numeroasientopasaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaventapasaje)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

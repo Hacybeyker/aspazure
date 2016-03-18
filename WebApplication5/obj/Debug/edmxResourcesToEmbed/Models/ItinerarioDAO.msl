@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="webventapasajeModelStoreContainer" CdmEntityContainer="webventapasajeEntities">
+    <EntitySetMapping Name="asiento">
+      <EntityTypeMapping TypeName="webventapasajeModel.asiento">
+        <MappingFragment StoreEntitySet="asiento">
+          <ScalarProperty Name="codigoasiento" ColumnName="codigoasiento" />
+          <ScalarProperty Name="nombreasiento" ColumnName="nombreasiento" />
+          <ScalarProperty Name="estadoasiento" ColumnName="estadoasiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bus">
+      <EntityTypeMapping TypeName="webventapasajeModel.bus">
+        <MappingFragment StoreEntitySet="bus">
+          <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+          <ScalarProperty Name="estadobus" ColumnName="estadobus" />
+          <ScalarProperty Name="modelobus" ColumnName="modelobus" />
+          <ScalarProperty Name="placabus" ColumnName="placabus" />
+          <ScalarProperty Name="tipobus" ColumnName="tipobus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="conductor">
+      <EntityTypeMapping TypeName="webventapasajeModel.conductor">
+        <MappingFragment StoreEntitySet="conductor">
+          <ScalarProperty Name="codigoconductor" ColumnName="codigoconductor" />
+          <ScalarProperty Name="nombreconductor" ColumnName="nombreconductor" />
+          <ScalarProperty Name="apellidoconductor" ColumnName="apellidoconductor" />
+          <ScalarProperty Name="dniconductor" ColumnName="dniconductor" />
+          <ScalarProperty Name="direccionconductor" ColumnName="direccionconductor" />
+          <ScalarProperty Name="telefonoconductor" ColumnName="telefonoconductor" />
+          <ScalarProperty Name="correoconductor" ColumnName="correoconductor" />
+          <ScalarProperty Name="estadoconductor" ColumnName="estadoconductor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalleasiento">
+      <EntityTypeMapping TypeName="webventapasajeModel.detalleasiento">
+        <MappingFragment StoreEntitySet="detalleasiento">
+          <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+          <ScalarProperty Name="codigoasiento" ColumnName="codigoasiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleado">
+      <EntityTypeMapping TypeName="webventapasajeModel.empleado">
+        <MappingFragment StoreEntitySet="empleado">
+          <ScalarProperty Name="codigoempleado" ColumnName="codigoempleado" />
+          <ScalarProperty Name="nombreempleado" ColumnName="nombreempleado" />
+          <ScalarProperty Name="apellidoempleado" ColumnName="apellidoempleado" />
+          <ScalarProperty Name="dniempleado" ColumnName="dniempleado" />
+          <ScalarProperty Name="direccionempleado" ColumnName="direccionempleado" />
+          <ScalarProperty Name="telefonoempleado" ColumnName="telefonoempleado" />
+          <ScalarProperty Name="correoempleado" ColumnName="correoempleado" />
+          <ScalarProperty Name="usuarioempleado" ColumnName="usuarioempleado" />
+          <ScalarProperty Name="passwordempleado" ColumnName="passwordempleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="itinerario">
+      <EntityTypeMapping TypeName="webventapasajeModel.itinerario">
+        <MappingFragment StoreEntitySet="itinerario">
+          <ScalarProperty Name="codigoitinerario" ColumnName="codigoitinerario" />
+          <ScalarProperty Name="codigolugarorigen" ColumnName="codigolugarorigen" />
+          <ScalarProperty Name="codigolugardestino" ColumnName="codigolugardestino" />
+          <ScalarProperty Name="codigoservicio" ColumnName="codigoservicio" />
+          <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+          <ScalarProperty Name="codigoconductor" ColumnName="codigoconductor" />
+          <ScalarProperty Name="fechasalidaitinerario" ColumnName="fechasalidaitinerario" />
+          <ScalarProperty Name="horasalidaitinerario" ColumnName="horasalidaitinerario" />
+          <ScalarProperty Name="fechallegadaitinerario" ColumnName="fechallegadaitinerario" />
+          <ScalarProperty Name="horallegadaitinerario" ColumnName="horallegadaitinerario" />
+          <ScalarProperty Name="precioitinerario" ColumnName="precioitinerario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lugar">
+      <EntityTypeMapping TypeName="webventapasajeModel.lugar">
+        <MappingFragment StoreEntitySet="lugar">
+          <ScalarProperty Name="codigolugar" ColumnName="codigolugar" />
+          <ScalarProperty Name="nombrelugar" ColumnName="nombrelugar" />
+          <ScalarProperty Name="descripcionlugar" ColumnName="descripcionlugar" />
+          <ScalarProperty Name="direccionlugar" ColumnName="direccionlugar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pasaje">
+      <EntityTypeMapping TypeName="webventapasajeModel.pasaje">
+        <MappingFragment StoreEntitySet="pasaje">
+          <ScalarProperty Name="codigopasaje" ColumnName="codigopasaje" />
+          <ScalarProperty Name="codigoitinerario" ColumnName="codigoitinerario" />
+          <ScalarProperty Name="codigopasajero" ColumnName="codigopasajero" />
+          <ScalarProperty Name="numeroasientopasaje" ColumnName="numeroasientopasaje" />
+          <ScalarProperty Name="fechaventapasaje" ColumnName="fechaventapasaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pasajero">
+      <EntityTypeMapping TypeName="webventapasajeModel.pasajero">
+        <MappingFragment StoreEntitySet="pasajero">
+          <ScalarProperty Name="codigopasajero" ColumnName="codigopasajero" />
+          <ScalarProperty Name="nombrepasajero" ColumnName="nombrepasajero" />
+          <ScalarProperty Name="apellidopasajero" ColumnName="apellidopasajero" />
+          <ScalarProperty Name="dnipasajero" ColumnName="dnipasajero" />
+          <ScalarProperty Name="direccionpasajero" ColumnName="direccionpasajero" />
+          <ScalarProperty Name="telefonopasajero" ColumnName="telefonopasajero" />
+          <ScalarProperty Name="correopasajero" ColumnName="correopasajero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="servicio">
+      <EntityTypeMapping TypeName="webventapasajeModel.servicio">
+        <MappingFragment StoreEntitySet="servicio">
+          <ScalarProperty Name="codigoservicio" ColumnName="codigoservicio" />
+          <ScalarProperty Name="nombreservicio" ColumnName="nombreservicio" />
+          <ScalarProperty Name="descripcionservicio" ColumnName="descripcionservicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

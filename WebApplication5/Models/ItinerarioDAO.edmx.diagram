@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2619b909af574e00a0928b144d5d5ca4" Name="Diagram1">
+        <EntityTypeShape EntityType="webventapasajeModel.asiento" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.bus" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.conductor" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.detalleasiento" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.empleado" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.itinerario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.lugar" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.pasaje" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.pasajero" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="webventapasajeModel.servicio" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <AssociationConnector Association="webventapasajeModel.codigobusitinerario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigoconductoritinerario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigoitinerariopasaje_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigolugardestinoitinerario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigolugarorigenitinerario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigoservicioitinerario_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="webventapasajeModel.codigopasajeropasaje_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

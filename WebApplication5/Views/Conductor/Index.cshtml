@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebApplication5.Models.conductor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Regresar","Index","Home")
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidoconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dniconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccionconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefonoconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correoconductor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estadoconductor)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dniconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccionconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefonoconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correoconductor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoconductor)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

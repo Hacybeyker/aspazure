@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="webventapasajeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asiento">
+          <Key>
+            <PropertyRef Name="codigoasiento" />
+          </Key>
+          <Property Name="codigoasiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreasiento" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="estadoasiento" Type="bit" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="codigobus" />
+          </Key>
+          <Property Name="codigobus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estadobus" Type="bit" />
+          <Property Name="modelobus" Type="varchar" MaxLength="50" />
+          <Property Name="placabus" Type="varchar" MaxLength="50" />
+          <Property Name="tipobus" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="codigoconductor" />
+          </Key>
+          <Property Name="codigoconductor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreconductor" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidoconductor" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="dniconductor" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="direccionconductor" Type="varchar" MaxLength="40" />
+          <Property Name="telefonoconductor" Type="varchar" MaxLength="10" />
+          <Property Name="correoconductor" Type="varchar" MaxLength="40" />
+          <Property Name="estadoconductor" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="detalleasiento">
+          <Key>
+            <PropertyRef Name="codigobus" />
+            <PropertyRef Name="codigoasiento" />
+          </Key>
+          <Property Name="codigobus" Type="int" Nullable="false" />
+          <Property Name="codigoasiento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="codigoempleado" />
+          </Key>
+          <Property Name="codigoempleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreempleado" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidoempleado" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="dniempleado" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="direccionempleado" Type="varchar" MaxLength="40" />
+          <Property Name="telefonoempleado" Type="varchar" MaxLength="10" />
+          <Property Name="correoempleado" Type="varchar" MaxLength="40" />
+          <Property Name="usuarioempleado" Type="varchar" MaxLength="40" />
+          <Property Name="passwordempleado" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="itinerario">
+          <Key>
+            <PropertyRef Name="codigoitinerario" />
+          </Key>
+          <Property Name="codigoitinerario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigolugarorigen" Type="int" />
+          <Property Name="codigolugardestino" Type="int" />
+          <Property Name="codigoservicio" Type="int" />
+          <Property Name="codigobus" Type="int" />
+          <Property Name="codigoconductor" Type="int" Nullable="false" />
+          <Property Name="fechasalidaitinerario" Type="date" />
+          <Property Name="horasalidaitinerario" Type="date" />
+          <Property Name="fechallegadaitinerario" Type="date" />
+          <Property Name="horallegadaitinerario" Type="date" />
+          <Property Name="precioitinerario" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="lugar">
+          <Key>
+            <PropertyRef Name="codigolugar" />
+          </Key>
+          <Property Name="codigolugar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrelugar" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="descripcionlugar" Type="varchar" MaxLength="50" />
+          <Property Name="direccionlugar" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pasaje">
+          <Key>
+            <PropertyRef Name="codigopasaje" />
+          </Key>
+          <Property Name="codigopasaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoitinerario" Type="int" Nullable="false" />
+          <Property Name="codigopasajero" Type="int" Nullable="false" />
+          <Property Name="numeroasientopasaje" Type="varchar" MaxLength="5" />
+          <Property Name="fechaventapasaje" Type="date" />
+        </EntityType>
+        <EntityType Name="pasajero">
+          <Key>
+            <PropertyRef Name="codigopasajero" />
+          </Key>
+          <Property Name="codigopasajero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombrepasajero" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidopasajero" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="dnipasajero" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="direccionpasajero" Type="varchar" MaxLength="40" />
+          <Property Name="telefonopasajero" Type="varchar" MaxLength="10" />
+          <Property Name="correopasajero" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="codigoservicio" />
+          </Key>
+          <Property Name="codigoservicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreservicio" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="descripcionservicio" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <Association Name="codigobusitinerario_fk">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="codigobus" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigobus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoconductoritinerario_fk">
+          <End Role="conductor" Type="Self.conductor" Multiplicity="1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="codigoconductor" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigoconductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoitinerariopasaje_fk">
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="1" />
+          <End Role="pasaje" Type="Self.pasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="itinerario">
+              <PropertyRef Name="codigoitinerario" />
+            </Principal>
+            <Dependent Role="pasaje">
+              <PropertyRef Name="codigoitinerario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigolugardestinoitinerario_fk">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="codigolugar" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigolugardestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigolugarorigenitinerario_fk">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="codigolugar" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigolugarorigen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigopasajeropasaje_fk">
+          <End Role="pasajero" Type="Self.pasajero" Multiplicity="1" />
+          <End Role="pasaje" Type="Self.pasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pasajero">
+              <PropertyRef Name="codigopasajero" />
+            </Principal>
+            <Dependent Role="pasaje">
+              <PropertyRef Name="codigopasajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoservicioitinerario_fk">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="codigoservicio" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigoservicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="webventapasajeModelStoreContainer">
+          <EntitySet Name="asiento" EntityType="Self.asiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bus" EntityType="Self.bus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="conductor" EntityType="Self.conductor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalleasiento" EntityType="Self.detalleasiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="itinerario" EntityType="Self.itinerario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lugar" EntityType="Self.lugar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pasaje" EntityType="Self.pasaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pasajero" EntityType="Self.pasajero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="codigobusitinerario_fk" Association="Self.codigobusitinerario_fk">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigoconductoritinerario_fk" Association="Self.codigoconductoritinerario_fk">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigoitinerariopasaje_fk" Association="Self.codigoitinerariopasaje_fk">
+            <End Role="itinerario" EntitySet="itinerario" />
+            <End Role="pasaje" EntitySet="pasaje" />
+          </AssociationSet>
+          <AssociationSet Name="codigolugardestinoitinerario_fk" Association="Self.codigolugardestinoitinerario_fk">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigolugarorigenitinerario_fk" Association="Self.codigolugarorigenitinerario_fk">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigopasajeropasaje_fk" Association="Self.codigopasajeropasaje_fk">
+            <End Role="pasajero" EntitySet="pasajero" />
+            <End Role="pasaje" EntitySet="pasaje" />
+          </AssociationSet>
+          <AssociationSet Name="codigoservicioitinerario_fk" Association="Self.codigoservicioitinerario_fk">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="webventapasajeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="asiento">
+          <Key>
+            <PropertyRef Name="codigoasiento" />
+          </Key>
+          <Property Name="codigoasiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreasiento" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoasiento" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="bus">
+          <Key>
+            <PropertyRef Name="codigobus" />
+          </Key>
+          <Property Name="codigobus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estadobus" Type="Boolean" />
+          <Property Name="modelobus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="placabus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipobus" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="itinerario" Relationship="Self.codigobusitinerario_fk" FromRole="bus" ToRole="itinerario" />
+        </EntityType>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="codigoconductor" />
+          </Key>
+          <Property Name="codigoconductor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreconductor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidoconductor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dniconductor" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccionconductor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoconductor" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correoconductor" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="estadoconductor" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="itinerario" Relationship="Self.codigoconductoritinerario_fk" FromRole="conductor" ToRole="itinerario" />
+        </EntityType>
+        <EntityType Name="detalleasiento">
+          <Key>
+            <PropertyRef Name="codigobus" />
+            <PropertyRef Name="codigoasiento" />
+          </Key>
+          <Property Name="codigobus" Type="Int32" Nullable="false" />
+          <Property Name="codigoasiento" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="codigoempleado" />
+          </Key>
+          <Property Name="codigoempleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidoempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dniempleado" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccionempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="telefonoempleado" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correoempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="passwordempleado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="itinerario">
+          <Key>
+            <PropertyRef Name="codigoitinerario" />
+          </Key>
+          <Property Name="codigoitinerario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigolugarorigen" Type="Int32" />
+          <Property Name="codigolugardestino" Type="Int32" />
+          <Property Name="codigoservicio" Type="Int32" />
+          <Property Name="codigobus" Type="Int32" />
+          <Property Name="codigoconductor" Type="Int32" Nullable="false" />
+          <Property Name="fechasalidaitinerario" Type="DateTime" Precision="0" />
+          <Property Name="horasalidaitinerario" Type="DateTime" Precision="0" />
+          <Property Name="fechallegadaitinerario" Type="DateTime" Precision="0" />
+          <Property Name="horallegadaitinerario" Type="DateTime" Precision="0" />
+          <Property Name="precioitinerario" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="bus" Relationship="Self.codigobusitinerario_fk" FromRole="itinerario" ToRole="bus" />
+          <NavigationProperty Name="conductor" Relationship="Self.codigoconductoritinerario_fk" FromRole="itinerario" ToRole="conductor" />
+          <NavigationProperty Name="pasaje" Relationship="Self.codigoitinerariopasaje_fk" FromRole="itinerario" ToRole="pasaje" />
+          <NavigationProperty Name="lugar" Relationship="Self.codigolugardestinoitinerario_fk" FromRole="itinerario" ToRole="lugar" />
+          <NavigationProperty Name="lugar1" Relationship="Self.codigolugarorigenitinerario_fk" FromRole="itinerario" ToRole="lugar" />
+          <NavigationProperty Name="servicio" Relationship="Self.codigoservicioitinerario_fk" FromRole="itinerario" ToRole="servicio" />
+        </EntityType>
+        <EntityType Name="lugar">
+          <Key>
+            <PropertyRef Name="codigolugar" />
+          </Key>
+          <Property Name="codigolugar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrelugar" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcionlugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccionlugar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="itinerario" Relationship="Self.codigolugardestinoitinerario_fk" FromRole="lugar" ToRole="itinerario" />
+          <NavigationProperty Name="itinerario1" Relationship="Self.codigolugarorigenitinerario_fk" FromRole="lugar" ToRole="itinerario" />
+        </EntityType>
+        <EntityType Name="pasaje">
+          <Key>
+            <PropertyRef Name="codigopasaje" />
+          </Key>
+          <Property Name="codigopasaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoitinerario" Type="Int32" Nullable="false" />
+          <Property Name="codigopasajero" Type="Int32" Nullable="false" />
+          <Property Name="numeroasientopasaje" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="fechaventapasaje" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="itinerario" Relationship="Self.codigoitinerariopasaje_fk" FromRole="pasaje" ToRole="itinerario" />
+          <NavigationProperty Name="pasajero" Relationship="Self.codigopasajeropasaje_fk" FromRole="pasaje" ToRole="pasajero" />
+        </EntityType>
+        <EntityType Name="pasajero">
+          <Key>
+            <PropertyRef Name="codigopasajero" />
+          </Key>
+          <Property Name="codigopasajero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombrepasajero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellidopasajero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dnipasajero" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccionpasajero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="telefonopasajero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correopasajero" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="pasaje" Relationship="Self.codigopasajeropasaje_fk" FromRole="pasajero" ToRole="pasaje" />
+        </EntityType>
+        <EntityType Name="servicio">
+          <Key>
+            <PropertyRef Name="codigoservicio" />
+          </Key>
+          <Property Name="codigoservicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreservicio" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcionservicio" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="itinerario" Relationship="Self.codigoservicioitinerario_fk" FromRole="servicio" ToRole="itinerario" />
+        </EntityType>
+        <Association Name="codigobusitinerario_fk">
+          <End Role="bus" Type="Self.bus" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bus">
+              <PropertyRef Name="codigobus" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigobus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoconductoritinerario_fk">
+          <End Role="conductor" Type="Self.conductor" Multiplicity="1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="codigoconductor" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigoconductor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoitinerariopasaje_fk">
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="1" />
+          <End Role="pasaje" Type="Self.pasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="itinerario">
+              <PropertyRef Name="codigoitinerario" />
+            </Principal>
+            <Dependent Role="pasaje">
+              <PropertyRef Name="codigoitinerario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigolugardestinoitinerario_fk">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="codigolugar" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigolugardestino" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigolugarorigenitinerario_fk">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="codigolugar" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigolugarorigen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigoservicioitinerario_fk">
+          <End Role="servicio" Type="Self.servicio" Multiplicity="0..1" />
+          <End Role="itinerario" Type="Self.itinerario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servicio">
+              <PropertyRef Name="codigoservicio" />
+            </Principal>
+            <Dependent Role="itinerario">
+              <PropertyRef Name="codigoservicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="codigopasajeropasaje_fk">
+          <End Role="pasajero" Type="Self.pasajero" Multiplicity="1" />
+          <End Role="pasaje" Type="Self.pasaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pasajero">
+              <PropertyRef Name="codigopasajero" />
+            </Principal>
+            <Dependent Role="pasaje">
+              <PropertyRef Name="codigopasajero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="webventapasajeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="asiento" EntityType="Self.asiento" />
+          <EntitySet Name="bus" EntityType="Self.bus" />
+          <EntitySet Name="conductor" EntityType="Self.conductor" />
+          <EntitySet Name="detalleasiento" EntityType="Self.detalleasiento" />
+          <EntitySet Name="empleado" EntityType="Self.empleado" />
+          <EntitySet Name="itinerario" EntityType="Self.itinerario" />
+          <EntitySet Name="lugar" EntityType="Self.lugar" />
+          <EntitySet Name="pasaje" EntityType="Self.pasaje" />
+          <EntitySet Name="pasajero" EntityType="Self.pasajero" />
+          <EntitySet Name="servicio" EntityType="Self.servicio" />
+          <AssociationSet Name="codigobusitinerario_fk" Association="Self.codigobusitinerario_fk">
+            <End Role="bus" EntitySet="bus" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigoconductoritinerario_fk" Association="Self.codigoconductoritinerario_fk">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigoitinerariopasaje_fk" Association="Self.codigoitinerariopasaje_fk">
+            <End Role="itinerario" EntitySet="itinerario" />
+            <End Role="pasaje" EntitySet="pasaje" />
+          </AssociationSet>
+          <AssociationSet Name="codigolugardestinoitinerario_fk" Association="Self.codigolugardestinoitinerario_fk">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigolugarorigenitinerario_fk" Association="Self.codigolugarorigenitinerario_fk">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigoservicioitinerario_fk" Association="Self.codigoservicioitinerario_fk">
+            <End Role="servicio" EntitySet="servicio" />
+            <End Role="itinerario" EntitySet="itinerario" />
+          </AssociationSet>
+          <AssociationSet Name="codigopasajeropasaje_fk" Association="Self.codigopasajeropasaje_fk">
+            <End Role="pasajero" EntitySet="pasajero" />
+            <End Role="pasaje" EntitySet="pasaje" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="webventapasajeModelStoreContainer" CdmEntityContainer="webventapasajeEntities">
+          <EntitySetMapping Name="asiento">
+            <EntityTypeMapping TypeName="webventapasajeModel.asiento">
+              <MappingFragment StoreEntitySet="asiento">
+                <ScalarProperty Name="codigoasiento" ColumnName="codigoasiento" />
+                <ScalarProperty Name="nombreasiento" ColumnName="nombreasiento" />
+                <ScalarProperty Name="estadoasiento" ColumnName="estadoasiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bus">
+            <EntityTypeMapping TypeName="webventapasajeModel.bus">
+              <MappingFragment StoreEntitySet="bus">
+                <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+                <ScalarProperty Name="estadobus" ColumnName="estadobus" />
+                <ScalarProperty Name="modelobus" ColumnName="modelobus" />
+                <ScalarProperty Name="placabus" ColumnName="placabus" />
+                <ScalarProperty Name="tipobus" ColumnName="tipobus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="conductor">
+            <EntityTypeMapping TypeName="webventapasajeModel.conductor">
+              <MappingFragment StoreEntitySet="conductor">
+                <ScalarProperty Name="codigoconductor" ColumnName="codigoconductor" />
+                <ScalarProperty Name="nombreconductor" ColumnName="nombreconductor" />
+                <ScalarProperty Name="apellidoconductor" ColumnName="apellidoconductor" />
+                <ScalarProperty Name="dniconductor" ColumnName="dniconductor" />
+                <ScalarProperty Name="direccionconductor" ColumnName="direccionconductor" />
+                <ScalarProperty Name="telefonoconductor" ColumnName="telefonoconductor" />
+                <ScalarProperty Name="correoconductor" ColumnName="correoconductor" />
+                <ScalarProperty Name="estadoconductor" ColumnName="estadoconductor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleasiento">
+            <EntityTypeMapping TypeName="webventapasajeModel.detalleasiento">
+              <MappingFragment StoreEntitySet="detalleasiento">
+                <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+                <ScalarProperty Name="codigoasiento" ColumnName="codigoasiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleado">
+            <EntityTypeMapping TypeName="webventapasajeModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="codigoempleado" ColumnName="codigoempleado" />
+                <ScalarProperty Name="nombreempleado" ColumnName="nombreempleado" />
+                <ScalarProperty Name="apellidoempleado" ColumnName="apellidoempleado" />
+                <ScalarProperty Name="dniempleado" ColumnName="dniempleado" />
+                <ScalarProperty Name="direccionempleado" ColumnName="direccionempleado" />
+                <ScalarProperty Name="telefonoempleado" ColumnName="telefonoempleado" />
+                <ScalarProperty Name="correoempleado" ColumnName="correoempleado" />
+                <ScalarProperty Name="usuarioempleado" ColumnName="usuarioempleado" />
+                <ScalarProperty Name="passwordempleado" ColumnName="passwordempleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="itinerario">
+            <EntityTypeMapping TypeName="webventapasajeModel.itinerario">
+              <MappingFragment StoreEntitySet="itinerario">
+                <ScalarProperty Name="codigoitinerario" ColumnName="codigoitinerario" />
+                <ScalarProperty Name="codigolugarorigen" ColumnName="codigolugarorigen" />
+                <ScalarProperty Name="codigolugardestino" ColumnName="codigolugardestino" />
+                <ScalarProperty Name="codigoservicio" ColumnName="codigoservicio" />
+                <ScalarProperty Name="codigobus" ColumnName="codigobus" />
+                <ScalarProperty Name="codigoconductor" ColumnName="codigoconductor" />
+                <ScalarProperty Name="fechasalidaitinerario" ColumnName="fechasalidaitinerario" />
+                <ScalarProperty Name="horasalidaitinerario" ColumnName="horasalidaitinerario" />
+                <ScalarProperty Name="fechallegadaitinerario" ColumnName="fechallegadaitinerario" />
+                <ScalarProperty Name="horallegadaitinerario" ColumnName="horallegadaitinerario" />
+                <ScalarProperty Name="precioitinerario" ColumnName="precioitinerario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lugar">
+            <EntityTypeMapping TypeName="webventapasajeModel.lugar">
+              <MappingFragment StoreEntitySet="lugar">
+                <ScalarProperty Name="codigolugar" ColumnName="codigolugar" />
+                <ScalarProperty Name="nombrelugar" ColumnName="nombrelugar" />
+                <ScalarProperty Name="descripcionlugar" ColumnName="descripcionlugar" />
+                <ScalarProperty Name="direccionlugar" ColumnName="direccionlugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pasaje">
+            <EntityTypeMapping TypeName="webventapasajeModel.pasaje">
+              <MappingFragment StoreEntitySet="pasaje">
+                <ScalarProperty Name="codigopasaje" ColumnName="codigopasaje" />
+                <ScalarProperty Name="codigoitinerario" ColumnName="codigoitinerario" />
+                <ScalarProperty Name="codigopasajero" ColumnName="codigopasajero" />
+                <ScalarProperty Name="numeroasientopasaje" ColumnName="numeroasientopasaje" />
+                <ScalarProperty Name="fechaventapasaje" ColumnName="fechaventapasaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pasajero">
+            <EntityTypeMapping TypeName="webventapasajeModel.pasajero">
+              <MappingFragment StoreEntitySet="pasajero">
+                <ScalarProperty Name="codigopasajero" ColumnName="codigopasajero" />
+                <ScalarProperty Name="nombrepasajero" ColumnName="nombrepasajero" />
+                <ScalarProperty Name="apellidopasajero" ColumnName="apellidopasajero" />
+                <ScalarProperty Name="dnipasajero" ColumnName="dnipasajero" />
+                <ScalarProperty Name="direccionpasajero" ColumnName="direccionpasajero" />
+                <ScalarProperty Name="telefonopasajero" ColumnName="telefonopasajero" />
+                <ScalarProperty Name="correopasajero" ColumnName="correopasajero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicio">
+            <EntityTypeMapping TypeName="webventapasajeModel.servicio">
+              <MappingFragment StoreEntitySet="servicio">
+                <ScalarProperty Name="codigoservicio" ColumnName="codigoservicio" />
+                <ScalarProperty Name="nombreservicio" ColumnName="nombreservicio" />
+                <ScalarProperty Name="descripcionservicio" ColumnName="descripcionservicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
